@@ -42,14 +42,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var addEducationButton = document.getElementById('add-education');
     var experienceSection = document.getElementById('experience-section');
     var educationSection = document.getElementById('education-section');
-    // Function to add a new experience entry
     addExperienceButton.addEventListener('click', function () {
         var experienceEntry = document.createElement('div');
         experienceEntry.classList.add('experience-entry');
         experienceEntry.innerHTML = "\n            <label for=\"company-name\">Company Name:</label>\n            <input type=\"text\" class=\"company-name\" required>\n            <label for=\"role\">Role:</label>\n            <input type=\"text\" class=\"role\" required>\n            <label for=\"experience-date\">Date:</label>\n            <input type=\"text\" class=\"experience-date\" required>\n            <label for=\"responsibilities\">Responsibilities:</label>\n            <textarea class=\"responsibilities\" rows=\"3\" required></textarea>\n        ";
         experienceSection.appendChild(experienceEntry);
     });
-    // Function to add a new education entry
     addEducationButton.addEventListener('click', function () {
         var educationEntry = document.createElement('div');
         educationEntry.classList.add('education-entry');
@@ -58,14 +56,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     form.addEventListener('submit', function (event) {
         event.preventDefault();
-        // Collect form data
+        // Capture form values
         var name = document.getElementById('user-name').value;
         var title = document.getElementById('user-title').value;
         var summary = document.getElementById('user-summary').value;
         var skills = document.getElementById('user-skills').value;
         var certifications = document.getElementById('user-certifications').value;
         var languages = document.getElementById('user-languages').value;
-        // Collect dynamic experience entries
+        // Capture dynamic email and phone number
+        var email = document.getElementById('user-email').value;
+        var phone = document.getElementById('user-phone').value;
+        // Process experience entries
         var experienceEntries = document.querySelectorAll('.experience-entry');
         var experiences = [];
         experienceEntries.forEach(function (entry) {
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 responsibilities: responsibilities.value,
             });
         });
-        // Collect dynamic education entries
+        // Process education entries
         var educationEntries = document.querySelectorAll('.education-entry');
         var education = [];
         educationEntries.forEach(function (entry) {
@@ -93,28 +94,31 @@ document.addEventListener('DOMContentLoaded', function () {
                 date: date.value,
             });
         });
-        // Update Resume Section
+        // Update the resume section with captured values
         document.getElementById('resume-name').textContent = name;
         document.getElementById('resume-title').textContent = title;
-        // Populate Experience Section
+        // Update resume email and phone number
+        document.getElementById('resume-email').innerHTML = "Email: <a href=\"mailto:".concat(email, "\">").concat(email, "</a>");
+        document.getElementById('resume-phone').textContent = "Phone: ".concat(phone);
+        // Populate experience section
         var resumeExperience = document.getElementById('resume-experience');
-        resumeExperience.innerHTML = ''; // Clear previous experience
+        resumeExperience.innerHTML = '';
         experiences.forEach(function (experience) {
             var div = document.createElement('div');
             div.classList.add('experience-item');
             div.innerHTML = "\n                <h4>".concat(experience.companyName, " - ").concat(experience.role, " (").concat(experience.date, ")</h4>\n                <p><strong>Responsibilities:</strong> ").concat(experience.responsibilities, "</p>\n            ");
             resumeExperience.appendChild(div);
         });
-        // Populate Education Section
+        // Populate education section
         var resumeEducation = document.getElementById('resume-education');
-        resumeEducation.innerHTML = ''; // Clear previous education
+        resumeEducation.innerHTML = '';
         education.forEach(function (edu) {
             var div = document.createElement('div');
             div.classList.add('education-item');
             div.innerHTML = "\n                <h4>".concat(edu.schoolName, " - ").concat(edu.degree, " (").concat(edu.date, ")</h4>\n            ");
             resumeEducation.appendChild(div);
         });
-        // Populate Skills
+        // Populate skills section
         var skillsList = document.getElementById('resume-skills');
         skillsList.innerHTML = '';
         skills.split(',').forEach(function (skill) {
@@ -122,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
             li.textContent = skill.trim();
             skillsList.appendChild(li);
         });
-        // Populate Certifications
+        // Populate certifications section
         var certificationsList = document.getElementById('resume-certifications');
         certificationsList.innerHTML = '';
         certifications.split(',').forEach(function (cert) {
@@ -130,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
             li.textContent = cert.trim();
             certificationsList.appendChild(li);
         });
-        // Populate Languages
+        // Populate languages section
         var languagesList = document.getElementById('resume-languages');
         languagesList.innerHTML = '';
         languages.split(',').forEach(function (language) {
@@ -138,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
             li.textContent = language.trim();
             languagesList.appendChild(li);
         });
-        // Show the resume section
+        // Show the resume section and hide the form
         form.style.display = 'none';
         resumeSection.style.display = 'block';
     });

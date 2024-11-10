@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const experienceSection = document.getElementById('experience-section') as HTMLElement;
     const educationSection = document.getElementById('education-section') as HTMLElement;
 
-
     addExperienceButton.addEventListener('click', () => {
         const experienceEntry = document.createElement('div');
         experienceEntry.classList.add('experience-entry');
@@ -65,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
         experienceSection.appendChild(experienceEntry);
     });
 
-  
     addEducationButton.addEventListener('click', () => {
         const educationEntry = document.createElement('div');
         educationEntry.classList.add('education-entry');
@@ -83,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (event) => {
         event.preventDefault();
 
-     
+        // Capture form values
         const name = (document.getElementById('user-name') as HTMLInputElement).value;
         const title = (document.getElementById('user-title') as HTMLInputElement).value;
         const summary = (document.getElementById('user-summary') as HTMLTextAreaElement).value;
@@ -91,7 +89,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const certifications = (document.getElementById('user-certifications') as HTMLInputElement).value;
         const languages = (document.getElementById('user-languages') as HTMLInputElement).value;
 
-     
+        // Capture dynamic email and phone number
+        const email = (document.getElementById('user-email') as HTMLInputElement).value;
+        const phone = (document.getElementById('user-phone') as HTMLInputElement).value;
+
+        // Process experience entries
         const experienceEntries = document.querySelectorAll('.experience-entry');
         const experiences = [];
         experienceEntries.forEach((entry: HTMLElement) => {
@@ -107,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        // Process education entries
         const educationEntries = document.querySelectorAll('.education-entry');
         const education = [];
         educationEntries.forEach((entry: HTMLElement) => {
@@ -120,13 +123,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-     
+        // Update the resume section with captured values
         (document.getElementById('resume-name') as HTMLElement).textContent = name;
         (document.getElementById('resume-title') as HTMLElement).textContent = title;
 
-       
+        // Update resume email and phone number
+        (document.getElementById('resume-email') as HTMLElement).innerHTML = `Email: <a href="mailto:${email}">${email}</a>`;
+        (document.getElementById('resume-phone') as HTMLElement).textContent = `Phone: ${phone}`;
+
+        // Populate experience section
         const resumeExperience = document.getElementById('resume-experience') as HTMLElement;
-        resumeExperience.innerHTML = ''; 
+        resumeExperience.innerHTML = '';
         experiences.forEach(experience => {
             const div = document.createElement('div');
             div.classList.add('experience-item');
@@ -137,9 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
             resumeExperience.appendChild(div);
         });
 
-       
+        // Populate education section
         const resumeEducation = document.getElementById('resume-education') as HTMLElement;
-        resumeEducation.innerHTML = ''; 
+        resumeEducation.innerHTML = '';
         education.forEach(edu => {
             const div = document.createElement('div');
             div.classList.add('education-item');
@@ -149,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
             resumeEducation.appendChild(div);
         });
 
-        
+        // Populate skills section
         const skillsList = document.getElementById('resume-skills') as HTMLElement;
         skillsList.innerHTML = '';
         skills.split(',').forEach(skill => {
@@ -158,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
             skillsList.appendChild(li);
         });
 
-      
+        // Populate certifications section
         const certificationsList = document.getElementById('resume-certifications') as HTMLElement;
         certificationsList.innerHTML = '';
         certifications.split(',').forEach(cert => {
@@ -167,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
             certificationsList.appendChild(li);
         });
 
-     
+        // Populate languages section
         const languagesList = document.getElementById('resume-languages') as HTMLElement;
         languagesList.innerHTML = '';
         languages.split(',').forEach(language => {
@@ -176,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
             languagesList.appendChild(li);
         });
 
-       
+        // Show the resume section and hide the form
         form.style.display = 'none';
         resumeSection.style.display = 'block';
     });
