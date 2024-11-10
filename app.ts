@@ -43,10 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('resume-form') as HTMLFormElement;
     const resumeSection = document.getElementById('resume-section') as HTMLElement;
-    const addExperienceButton = document.getElementById('add-experience') as HTMLButtonElement;
-    const addEducationButton = document.getElementById('add-education') as HTMLButtonElement;
+    const addExperienceButton = document.getElementById('add-experience') as HTMLElement;
+    const addEducationButton = document.getElementById('add-education') as HTMLElement;
     const experienceSection = document.getElementById('experience-section') as HTMLElement;
     const educationSection = document.getElementById('education-section') as HTMLElement;
+
+    const saveButton = document.getElementById('save-button') as HTMLElement;
+    const editButton = document.getElementById('edit-button') as HTMLElement;
 
     addExperienceButton.addEventListener('click', () => {
         const experienceEntry = document.createElement('div');
@@ -60,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <input type="text" class="experience-date" required>
             <label for="responsibilities">Responsibilities:</label>
             <textarea class="responsibilities" rows="3" required></textarea>
+            <button class="edit-btn">Edit</button>
         `;
         experienceSection.appendChild(experienceEntry);
     });
@@ -74,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <input type="text" class="degree" required>
             <label for="education-date">Date:</label>
             <input type="text" class="education-date" required>
+            <button class="edit-btn">Edit</button>
         `;
         educationSection.appendChild(educationEntry);
     });
@@ -81,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        // Capture form values
         const name = (document.getElementById('user-name') as HTMLInputElement).value;
         const title = (document.getElementById('user-title') as HTMLInputElement).value;
         const summary = (document.getElementById('user-summary') as HTMLTextAreaElement).value;
@@ -89,52 +93,47 @@ document.addEventListener('DOMContentLoaded', () => {
         const certifications = (document.getElementById('user-certifications') as HTMLInputElement).value;
         const languages = (document.getElementById('user-languages') as HTMLInputElement).value;
 
-        // Capture dynamic email and phone number
-        const email = (document.getElementById('user-email') as HTMLInputElement).value;
-        const phone = (document.getElementById('user-phone') as HTMLInputElement).value;
+        const email = (document.getElementById('resume-email') as HTMLElement).textContent!.replace('Email: ', '');
+        const phone = (document.getElementById('resume-phone') as HTMLElement).textContent!.replace('Phone: ', '');
 
-        // Process experience entries
         const experienceEntries = document.querySelectorAll('.experience-entry');
-        const experiences = [];
-        experienceEntries.forEach((entry: HTMLElement) => {
-            const companyName = entry.querySelector('.company-name') as HTMLInputElement;
-            const role = entry.querySelector('.role') as HTMLInputElement;
-            const date = entry.querySelector('.experience-date') as HTMLInputElement;
-            const responsibilities = entry.querySelector('.responsibilities') as HTMLTextAreaElement;
+        const experiences: { companyName: string, role: string, date: string, responsibilities: string }[] = [];
+        experienceEntries.forEach((entry) => {
+            const companyName = (entry.querySelector('.company-name') as HTMLInputElement).value;
+            const role = (entry.querySelector('.role') as HTMLInputElement).value;
+            const date = (entry.querySelector('.experience-date') as HTMLInputElement).value;
+            const responsibilities = (entry.querySelector('.responsibilities') as HTMLTextAreaElement).value;
             experiences.push({
-                companyName: companyName.value,
-                role: role.value,
-                date: date.value,
-                responsibilities: responsibilities.value,
+                companyName: companyName,
+                role: role,
+                date: date,
+                responsibilities: responsibilities,
             });
         });
 
-        // Process education entries
         const educationEntries = document.querySelectorAll('.education-entry');
-        const education = [];
-        educationEntries.forEach((entry: HTMLElement) => {
-            const schoolName = entry.querySelector('.school-name') as HTMLInputElement;
-            const degree = entry.querySelector('.degree') as HTMLInputElement;
-            const date = entry.querySelector('.education-date') as HTMLInputElement;
+        const education: { schoolName: string, degree: string, date: string }[] = [];
+        educationEntries.forEach((entry) => {
+            const schoolName = (entry.querySelector('.school-name') as HTMLInputElement).value;
+            const degree = (entry.querySelector('.degree') as HTMLInputElement).value;
+            const date = (entry.querySelector('.education-date') as HTMLInputElement).value;
             education.push({
-                schoolName: schoolName.value,
-                degree: degree.value,
-                date: date.value,
+                schoolName: schoolName,
+                degree: degree,
+                date: date,
             });
         });
 
-        // Update the resume section with captured values
         (document.getElementById('resume-name') as HTMLElement).textContent = name;
         (document.getElementById('resume-title') as HTMLElement).textContent = title;
 
-        // Update resume email and phone number
+        // Update dynamic content like email and phone
         (document.getElementById('resume-email') as HTMLElement).innerHTML = `Email: <a href="mailto:${email}">${email}</a>`;
         (document.getElementById('resume-phone') as HTMLElement).textContent = `Phone: ${phone}`;
 
-        // Populate experience section
         const resumeExperience = document.getElementById('resume-experience') as HTMLElement;
         resumeExperience.innerHTML = '';
-        experiences.forEach(experience => {
+        experiences.forEach((experience) => {
             const div = document.createElement('div');
             div.classList.add('experience-item');
             div.innerHTML = `
@@ -144,10 +143,9 @@ document.addEventListener('DOMContentLoaded', () => {
             resumeExperience.appendChild(div);
         });
 
-        // Populate education section
         const resumeEducation = document.getElementById('resume-education') as HTMLElement;
         resumeEducation.innerHTML = '';
-        education.forEach(edu => {
+        education.forEach((edu) => {
             const div = document.createElement('div');
             div.classList.add('education-item');
             div.innerHTML = `
@@ -156,35 +154,60 @@ document.addEventListener('DOMContentLoaded', () => {
             resumeEducation.appendChild(div);
         });
 
-        // Populate skills section
         const skillsList = document.getElementById('resume-skills') as HTMLElement;
         skillsList.innerHTML = '';
-        skills.split(',').forEach(skill => {
+        skills.split(',').forEach((skill) => {
             const li = document.createElement('li');
             li.textContent = skill.trim();
             skillsList.appendChild(li);
         });
 
-        // Populate certifications section
         const certificationsList = document.getElementById('resume-certifications') as HTMLElement;
         certificationsList.innerHTML = '';
-        certifications.split(',').forEach(cert => {
+        certifications.split(',').forEach((cert) => {
             const li = document.createElement('li');
             li.textContent = cert.trim();
             certificationsList.appendChild(li);
         });
 
-        // Populate languages section
         const languagesList = document.getElementById('resume-languages') as HTMLElement;
         languagesList.innerHTML = '';
-        languages.split(',').forEach(language => {
+        languages.split(',').forEach((language) => {
             const li = document.createElement('li');
             li.textContent = language.trim();
             languagesList.appendChild(li);
         });
 
-        // Show the resume section and hide the form
         form.style.display = 'none';
         resumeSection.style.display = 'block';
+    });
+
+    // Edit and Save buttons functionality for each element
+    document.body.addEventListener('click', (event) => {
+        const target = event.target as HTMLElement;
+
+        if (target.classList.contains('edit-btn')) {
+            const inputElement = target.previousElementSibling as HTMLElement;
+
+            if (target.textContent === 'Edit') {
+                // Make the element editable
+                if (inputElement instanceof HTMLInputElement || inputElement instanceof HTMLTextAreaElement) {
+                    inputElement.disabled = false;
+                } else if (inputElement instanceof HTMLElement) {
+                    inputElement.contentEditable = 'true';
+                }
+
+                target.textContent = 'Save'; // Change button to Save
+            } else if (target.textContent === 'Save') {
+                // Save the edited content and make the element uneditable
+                if (inputElement instanceof HTMLInputElement || inputElement instanceof HTMLTextAreaElement) {
+                    inputElement.disabled = true;
+                } else if (inputElement instanceof HTMLElement) {
+                    inputElement.contentEditable = 'false';
+                }
+
+                target.textContent = 'Edit'; // Change button back to Edit
+            }
+        }
     });
 });
