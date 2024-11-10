@@ -32,3 +32,24 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('resume-form');
+    var resumesection = document.getElementById('resume-section');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var name = document.getElementById('user-name').value;
+        var title = document.getElementById('user-title').value;
+        var email = document.getElementById('user-email').value;
+        var phone = document.getElementById('user-phone').value;
+        var address = document.getElementById('user-address').value;
+        document.getElementById('resume-name').textContent = name;
+        document.getElementById('resume-title').textContent = title;
+        var emailElem = document.getElementById('resume-email');
+        emailElem.textContent = email;
+        emailElem.href = "mailto:".concat(email);
+        document.getElementById('resume-phone').textContent = "Phone: ".concat(phone);
+        document.getElementById('resume-address').textContent = "Address: ".concat(address);
+        form.style.display = 'none';
+        resumesection.style.display = 'block';
+    });
+});
