@@ -10,162 +10,111 @@
 
 </head>
 <body>
+<!-- Form Section Start -->
 
-    <form id="resume-form">
-        <label for="user-name">Name:</label>
-        <input type="text" id="user-name" required>
+<form id="resume-form">
+    <label for="user-name">Name:</label>
+    <input type="text" id="user-name" required>
 
-        <label for="user-title">Position:</label>
-        <input type="text" id="user-title" required>
+    <label for="user-title">Title:</label>
+    <input type="text" id="user-title" required>
 
-        <label for="user-email">Email:</label>
-        <input type="email" id="user-email" required>
+    <label for="user-summary">Professional Summary:</label>
+    <textarea id="user-summary" rows="3" required></textarea>
 
-        <label for="user-phone">Phone:</label>
-        <input type="tel" id="user-phone" required>
+    <!-- Experience Section -->
+    <h3>Experience</h3>
+    <div id="experience-section">
+        <div class="experience-entry">
+            <label for="company-name">Company Name:</label>
+            <input type="text" class="company-name" required>
+            <label for="role">Role:</label>
+            <input type="text" class="role" required>
+            <label for="experience-date">Date:</label>
+            <input type="text" class="experience-date" required>
+            <label for="responsibilities">Responsibilities:</label>
+            <textarea class="responsibilities" rows="3" required></textarea>
+        </div>
+    </div>
+    <button type="button" id="add-experience">Add More Experience</button>
 
-        <label for="user-address">Address:</label>
-        <input type="text" id="user-address" required>
+    <!-- Education Section -->
+    <h3>Education</h3>
+    <div id="education-section">
+        <div class="education-entry">
+            <label for="school-name">School Name:</label>
+            <input type="text" class="school-name" required>
+            <label for="degree">Degree:</label>
+            <input type="text" class="degree" required>
+            <label for="education-date">Date:</label>
+            <input type="text" class="education-date" required>
+        </div>
+    </div>
+    <button type="button" id="add-education">Add More Education</button>
 
-        <button type="submit">Generate Resume</button>
-    </form>
+    <label for="user-skills">Skills (Comma separated):</label>
+    <input type="text" id="user-skills" required>
 
- <div id="resume-section" style="display: none;">
+    <label for="user-certifications">Certifications (Comma separated):</label>
+    <input type="text" id="user-certifications" required>
+
+    <label for="user-languages">Languages (Comma separated):</label>
+    <input type="text" id="user-languages" required>
+
+    <button type="submit">Generate Resume</button>
+</form>
+
+<!-- Form Section End -->
+
+<!-- Resume Section Start -->
+
+<div id="resume-section" style="display: none;">
     <header class="header-section">
         <div class="profile-picture-container">
             <img src="./images/mypic_mobile.png" alt="Profile Picture" class="profile-picture">
         </div>
         <div class="contact-info-section">
-            <h1 id="resume-name">Burair Ahmed</h1>
-            <h2 id="resume-title">Web Developer</h2>
+            <h1 id="resume-name">Name</h1>
+            <h2 id="resume-title">Title</h2>
             <ul>
                 <li id="resume-email">Email: <a href="mailto:dev.burairahmed@gmail.com">dev.burairahmed@gmail.com</a></li>
                 <li id="resume-phone">Phone: +92 307 7136555</li>
                 <li id="resume-address">Address: Karachi, Pakistan</li>
-                <li>
-                    LinkedIn: 
-                    <a href="https://www.linkedin.com/in/burairahmed/" target="_blank">
-                        <i class="fab fa-linkedin"></i> Burair Ahmed
-                    </a>
-                </li>
-                <li>
-                    GitHub: 
-                    <a href="https://github.com/burair-ahmed" target="_blank">
-                        <i class="fab fa-github"></i> Burair Ahmed
-                    </a>
-                </li>
             </ul>
         </div>
     </header>
-    <content class="main-content">
+
+    <section class="main-content">
         <section class="side-section">
             <h2>Skills</h2>
-            <ul>
-                <li>HTML, CSS, JavaScript</li>
-                <li>React, Next.js</li>
-                <li>Node.js, Express</li>
-                <li>MongoDB</li>
-                <li>TypeScript</li>
-            </ul>
+            <ul id="resume-skills"></ul>
+
             <h2>Languages</h2>
-            <ul>
-                <li>English (Fluent)</li>
-                <li>Urdu (Native)</li>
-            </ul>
-            <h2>Hobbies</h2>
-            <ul>
-                <li>Gaming</li>
-                <li>Reading Tech Blogs</li>
-                <li>Traveling</li>
-            </ul>
+            <ul id="resume-languages"></ul>
+
             <h2>Certifications</h2>
-            <ul>
-                <li>
-                    JavaScript Developer Certification
-                    <div class="certification-container">
-                        <div class="certification-image-container" style="display: none;">
-                            <img src="./images/dummy-certificate.jpg" alt="JavaScript Developer Certification" class="certificate-image"/>
-                        </div>
-                        <a  class="view-more-certification-btn"><small>View Certificate</small></a>
-                    </div>
-                </li>
-                <li>
-                    React Developer Bootcamp
-                    <div class="certification-container">
-                        <div class="certification-image-container" style="display: none;">
-                            <img src="./images/dummy-certificate.jpg" alt="React Developer Bootcamp" class="certificate-image"/>
-                        </div>
-                        <a href="#" class="view-more-certification-btn"><small>View Certificate</small></a>
-                    </div>
-                </li>
-                <li>
-                    MongoDB for Developers
-                    <div class="certification-container">
-                        <div class="certification-image-container" style="display: none;">
-                            <img src="./images/dummy-certificate.jpg" alt="MongoDB for Developers" class="certificate-image" />
-                        </div>
-                        <a href="#" class="view-more-certification-btn"><small>View Certificate</small></a>
-                    </div>
-                </li>
-            </ul>
-            
+            <ul id="resume-certifications"></ul>
         </section>
+
         <section class="main-section">
             <h2>Experience</h2>
-
-            <div class="experience-item">
-                <h3>Banana Digital Studio</h3>
-                <p>Freelance Web Developer | Remote | Present</p>
-                <p>Developing and maintaining responsive websites for various clients.</p>
-            </div>
-        
-            <div class="experience-item">
-                <h3>Maaq Services</h3>
-                <p>Freelance Web Developer | Remote | Present</p>
-                <p>Designing and developing scalable web solutions for diverse industries.</p>
-            </div>
-        
-            <!-- Additional Experiences -->
-            <div id="additional-experiences" style="display: none;">
-                <div class="experience-item">
-                    <h3>Nainsan Marketing Agency</h3>
-                    <p>Freelance Web Developer | Remote | 2022 - 2023</p>
-                    <p>Created marketing websites and landing pages tailored to client campaigns.</p>
-                </div>
-                <div class="experience-item">
-                    <h3>Al-Ashraf GOC</h3>
-                    <p>Web Developer | Feb 2023 - Aug 2023</p>
-                    <p>Designed and implemented a custom CMS.</p>
-                </div>
-                <div class="experience-item">
-                    <h3>Viral Marketing</h3>
-                    <p>Web Developer | Aug 2023 - Present</p>
-                    <p>Leading the development of interactive, data-driven web applications.</p>
-                </div>
-            </div>
-        
-            <button id="view-more-btn">View More</button>
-        
+            <div id="resume-experience"></div>
 
             <h2>Education</h2>
-            <div class="education-item">
-                <h3>XYZ University</h3>
-                <p>Bachelor of Science in Computer Science | 2018 - 2022</p>
-                <p>Key Courses: Data Structures, Web Development, Machine Learning</p>
-            </div>
-            <div class="education-item">
-                <h3>ABC High School</h3>
-                <p>High School Diploma | 2016 - 2018</p>
-            </div>
+            <div id="resume-education"></div>
 
             <h2>References</h2>
             <p>Available upon request.</p>
         </section>
-    </content>
+    </section>
+
     <footer>
-        <p>&copy; 2024 Burair Ahmed. All Rights Reserved.</p>
+        <p>&copy; 2024 Your Name. All Rights Reserved.</p>
     </footer>
- </div>
+</div>
+
+<!-- Resume Section End -->
+
     <script src="app.js"></script>
 </body>
 </html>
