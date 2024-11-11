@@ -339,3 +339,65 @@ button[type="submit"]:hover {
         font-size: 0.9rem;
     }
 }
+
+
+
+
+
+
+/* Style for the button container */
+#button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style for the buttons */
+button {
+    padding: 12px 24px;
+    font-size: 16px;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+}
+
+/* Style for the "Download Resume as PDF" button */
+#download-pdf-btn {
+    background-color: #4CAF50; /* Green */
+}
+
+#download-pdf-btn:hover {
+    background-color: #45a049;
+}
+
+/* Style for the "Copy Shareable Link" button (hidden by default) */
+#copy-link-btn {
+    background-color: #2196F3; /* Blue */
+}
+
+#copy-link-btn:hover {
+    background-color: #0b7dda;
+}
+
+/* Button focus styles for accessibility */
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Disabled button styles */
+button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+/* Responsive styles for smaller screens */
+@media screen and (max-width: 600px) {
+    button {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}

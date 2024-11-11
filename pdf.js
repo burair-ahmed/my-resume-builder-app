@@ -6,12 +6,15 @@ document.addEventListener('DOMContentLoaded', function () {
             var resumeSection = document.getElementById('resume-section');
             var footer = document.querySelector('footer');
             var downloadButton = document.getElementById('download-pdf-btn');
+            var linkbutton = document.getElementById('copy-link-btn');
             if (resumeSection) {
                 // Hide the footer and download button to prevent them from appearing in the PDF
                 if (footer)
                     footer.style.display = 'none';
                 if (downloadButton)
                     downloadButton.style.display = 'none';
+                if (linkbutton)
+                    linkbutton.style.display = 'none';
                 // Add a loading message or spinner if desired
                 var loadingMessage_1 = document.createElement('div');
                 loadingMessage_1.textContent = 'Generating PDF...';

@@ -9,11 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const resumeSection = document.getElementById('resume-section');
             const footer = document.querySelector('footer');
             const downloadButton = document.getElementById('download-pdf-btn');
+            const linkbutton = document.getElementById('copy-link-btn');
 
             if (resumeSection) {
                 // Hide the footer and download button to prevent them from appearing in the PDF
                 if (footer) footer.style.display = 'none';
                 if (downloadButton) downloadButton.style.display = 'none';
+                if (linkbutton) linkbutton.style.display='none';
 
                 // Add a loading message or spinner if desired
                 const loadingMessage = document.createElement('div');
