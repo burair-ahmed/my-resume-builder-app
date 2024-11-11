@@ -4,8 +4,15 @@ document.addEventListener('DOMContentLoaded', function () {
     if (downloadButton) {
         downloadButton.addEventListener('click', function () {
             var resumeSection = document.getElementById('resume-section');
+            var footer = document.querySelector('footer');
+            var downloadButton = document.getElementById('download-pdf-btn');
             if (resumeSection) {
-                // Configure the pdf options
+                // Hide the footer and download button
+                if (footer)
+                    footer.style.display = 'none';
+                if (downloadButton)
+                    downloadButton.style.display = 'none';
+                // Configure the PDF options
                 var options = {
                     margin: 10,
                     filename: 'resume.pdf',
@@ -15,6 +22,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 };
                 // Convert the resume section into a PDF
                 html2pdf().from(resumeSection).set(options).save();
+                // Restore the footer and download button after the download
+                setTimeout(function () {
+                    if (footer)
+                        footer.style.display = 'block';
+                    if (downloadButton)
+                        downloadButton.style.display = 'block';
+                }, 1000); // Wait for 1 second to restore elements after download
             }
         });
     }
