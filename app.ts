@@ -92,9 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const skills = (document.getElementById('user-skills') as HTMLInputElement).value;
         const certifications = (document.getElementById('user-certifications') as HTMLInputElement).value;
         const languages = (document.getElementById('user-languages') as HTMLInputElement).value;
-
-        const email = (document.getElementById('resume-email') as HTMLElement).textContent!.replace('Email: ', '');
-        const phone = (document.getElementById('resume-phone') as HTMLElement).textContent!.replace('Phone: ', '');
+        const email = (document.getElementById('user-email') as HTMLInputElement).value;
+        const phone = (document.getElementById('user-phone') as HTMLInputElement).value;
+        
 
         const experienceEntries = document.querySelectorAll('.experience-entry');
         const experiences: { companyName: string, role: string, date: string, responsibilities: string }[] = [];

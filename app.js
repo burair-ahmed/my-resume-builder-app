@@ -64,8 +64,8 @@ document.addEventListener('DOMContentLoaded', function () {
         var skills = document.getElementById('user-skills').value;
         var certifications = document.getElementById('user-certifications').value;
         var languages = document.getElementById('user-languages').value;
-        var email = document.getElementById('resume-email').textContent.replace('Email: ', '');
-        var phone = document.getElementById('resume-phone').textContent.replace('Phone: ', '');
+        var email = document.getElementById('user-email').value;
+        var phone = document.getElementById('user-phone').value;
         var experienceEntries = document.querySelectorAll('.experience-entry');
         var experiences = [];
         experienceEntries.forEach(function (entry) {
