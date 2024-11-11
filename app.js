@@ -66,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var languages = document.getElementById('user-languages').value;
         var email = document.getElementById('user-email').value;
         var phone = document.getElementById('user-phone').value;
+        var address = document.getElementById('user-address').value;
         var experienceEntries = document.querySelectorAll('.experience-entry');
         var experiences = [];
         experienceEntries.forEach(function (entry) {
@@ -97,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Update dynamic content like email and phone
         document.getElementById('resume-email').innerHTML = "Email: <a href=\"mailto:".concat(email, "\">").concat(email, "</a>");
         document.getElementById('resume-phone').textContent = "Phone: ".concat(phone);
+        document.getElementById('resume-address').textContent = address;
         var resumeExperience = document.getElementById('resume-experience');
         resumeExperience.innerHTML = '';
         experiences.forEach(function (experience) {

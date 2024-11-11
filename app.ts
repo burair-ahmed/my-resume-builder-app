@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const languages = (document.getElementById('user-languages') as HTMLInputElement).value;
         const email = (document.getElementById('user-email') as HTMLInputElement).value;
         const phone = (document.getElementById('user-phone') as HTMLInputElement).value;
+        const address = (document.getElementById('user-address') as HTMLInputElement).value;
         
 
         const experienceEntries = document.querySelectorAll('.experience-entry');
@@ -130,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update dynamic content like email and phone
         (document.getElementById('resume-email') as HTMLElement).innerHTML = `Email: <a href="mailto:${email}">${email}</a>`;
         (document.getElementById('resume-phone') as HTMLElement).textContent = `Phone: ${phone}`;
+        (document.getElementById('resume-address') as HTMLElement).textContent = address;
 
         const resumeExperience = document.getElementById('resume-experience') as HTMLElement;
         resumeExperience.innerHTML = '';
