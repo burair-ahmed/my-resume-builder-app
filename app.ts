@@ -294,6 +294,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             resumeSection.style.display = 'block';
+            form.style.display = 'none'; // Hide the form when viewing a saved resume
         }
+    } else {
+        // Show the form if no resumeId is in the URL
+        form.style.display = 'block';
+        resumeSection.style.display = 'none';
     }
 });
